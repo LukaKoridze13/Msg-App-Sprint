@@ -1,0 +1,233 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: #09a341;
+  padding: 16px;
+  width: 100vw;
+  height: 100dvh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+#plusButton {
+  width: 40px;
+  height: 40px;
+  background-color: #09913c;
+  border: none;
+  border-radius: 50%;
+  color: rgb(209, 209, 209);
+  font-size: 36px;
+
+  display: grid;
+  place-content: center;
+
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+#youHave {
+  width: 200px;
+  font-size: 40px;
+  color: black;
+  font-weight: bolder;
+}
+
+#count {
+  color: white;
+}
+
+#filter {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 40px;
+  color: white;
+  justify-content: space-between;
+}
+
+#left,
+#right {
+  width: 49%;
+  height: 40px;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+#left span,
+#right span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  white-space: nowrap;
+}
+#middle {
+  width: 8%;
+  height: 26px;
+  background-color: #078234;
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+#black {
+  width: 44%;
+  height: 32px;
+  background-color: black;
+  border-radius: 20px;
+  z-index: 3;
+  position: absolute;
+  left: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.06s linear, left 0.12s linear, height 0.12s linear,
+    width 0.12s linear;
+}
+
+#messages {
+  width: 100%;
+  height: 330px;
+  position: relative;
+}
+
+.message h1 {
+  font-size: 22px;
+}
+
+.message span {
+  font-size: 16px;
+  color: gray;
+}
+.message img {
+  width: 50px;
+  position: absolute;
+  right: 30px;
+  top: 20px;
+}
+
+.message .buttons {
+  display: none;
+  margin-top: 20vw;
+  align-items: center;
+  position: relative;
+  height: 40px;
+  color: rgb(255, 255, 255);
+  justify-content: space-between;
+}
+
+.trash,
+.reply {
+  width: 49%;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #b5d2be;
+  position: relative;
+}
+.trash span,
+.reply span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  white-space: nowrap;
+  color: white;
+  width: 90%;
+  height: 80%;
+  background-color: black;
+  border-radius: 20px;
+  display: grid;
+  place-content: center;
+}
+
+.trash span {
+  background-color: #84bd9a;
+}
+
+.middlee {
+  width: 8%;
+  height: 26px;
+  background-color: #b3d2bd;
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.message p {
+  height: 70%;
+  width: 100%;
+  background-color: rgb(231, 231, 231);
+  margin-top: 20px;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 16px;
+}
+.message {
+  width: 100%;
+  height: 220px;
+  position: absolute;
+  z-index: 5;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  border-radius: 30px;
+  padding: 20px;
+  transition: all 1s;
+}
+.message.goDown {
+  bottom: -300px;
+  opacity: 0;
+  transform: translateX(-50%) scale(0.3);
+}
+
+.message.goFirst {
+  z-index: 5;
+  bottom: 0;
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+.message.goSecond {
+  z-index: 4;
+  bottom: 60px;
+  opacity: 0.75;
+  transform: translateX(-50%) scale(0.9);
+}
+
+.message.goThird {
+  z-index: 3;
+  bottom: 100px;
+  opacity: 0.5;
+  transform: translateX(-50%) scale(0.8);
+}
+
+.message.invisible {
+  z-index: 2;
+  bottom: 120px;
+  opacity: 00;
+  transform: translateX(-50%) scale(0.2);
+}
+
+.message#expand {
+  width: calc(100vw - 32px);
+  height: calc(100dvh - 32px);
+  bottom: 16px;
+}
