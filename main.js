@@ -36,7 +36,7 @@ let MESSAGES_DATA = [
     short_Text: "Hey John, long time no see!",
     long_Text:
       "Hello John, It's been a while since we last spoke. I hope you're doing great. Let's plan a meetup soon. Take care!",
-    isPinned: true,
+    isPinned: false,
   },
   {
     title: "Maria Garcia",
@@ -46,7 +46,7 @@ let MESSAGES_DATA = [
     short_Text: "Hola John, ¿cómo estás?",
     long_Text:
       "Hola John, Espero que estés bien. Ha pasado mucho tiempo desde nuestra última conversación. ¡Hablemos pronto! Saludos",
-    isPinned: true,
+    isPinned: false,
   },
   {
     title: "Michael Brown",
@@ -69,6 +69,7 @@ let MESSAGES_DATA = [
     isPinned: true,
   },
 ];
+let filteredData = MESSAGES_DATA;
 let BLACK_POSITION = "left";
 let ITTERATION = 0;
 let LAST_EXECUTION_TIME = 0;
@@ -100,8 +101,8 @@ function filter() {
       ALL_MESSAGES.addEventListener("click", filter);
     }, 125);
     animate();
-    let pinned = MESSAGES_DATA.filter((message) => message.isPinned);
-    drawMessages(pinned);
+    filteredData = MESSAGES_DATA.filter((message) => message.isPinned);
+    drawMessages(filteredData);
     animateMessages("start");
   } else {
     ALL_MESSAGES.removeEventListener("click", filter);
@@ -109,6 +110,7 @@ function filter() {
       PINNED.addEventListener("click", filter);
     }, 125);
     animateReverse();
+    filteredData = MESSAGES_DATA;
     drawMessages(MESSAGES_DATA);
     animateMessages("start");
 
@@ -186,18 +188,18 @@ function animateMessages(starting) {
     MESSAGES.childNodes[0].classList.remove("invisible");
     MESSAGES.childNodes[0].classList.add("goFirst");
     MESSAGES.childNodes[0].addEventListener("click", () => {
-      expand(MESSAGES.childNodes[0], MESSAGES_DATA[0]);
+      expand(MESSAGES.childNodes[0], filteredData[0]);
     });
-    if (MESSAGES_DATA.length > 1) {
+    if (filteredData.length > 1) {
       MESSAGES.childNodes[1].classList.remove("invisible");
       MESSAGES.childNodes[1].classList.add("goSecond");
     }
-    if (MESSAGES_DATA.length > 2) {
+    if (filteredData.length > 2) {
       MESSAGES.childNodes[2].classList.remove("invisible");
       MESSAGES.childNodes[2].classList.add("goThird");
     }
   } else {
-    if (MESSAGES_DATA.length > 3) {
+    if (filteredData.length > 3) {
       let current;
       MESSAGES.childNodes.forEach((message, index) => {
         if (message.classList.contains("goFirst")) {
@@ -210,16 +212,16 @@ function animateMessages(starting) {
       });
 
       let first = current + 1;
-      if (current + 1 >= MESSAGES_DATA.length) {
+      if (current + 1 >= filteredData.length) {
         first = 0;
       }
       let second = current + 2;
-      if (second >= MESSAGES_DATA.length) {
-        second = Math.abs(second - MESSAGES_DATA.length);
+      if (second >= filteredData.length) {
+        second = Math.abs(second - filteredData.length);
       }
       let third = current + 3;
-      if (third >= MESSAGES_DATA.length) {
-        third = Math.abs(third - MESSAGES_DATA.length);
+      if (third >= filteredData.length) {
+        third = Math.abs(third - filteredData.length);
       }
 
       MESSAGES.childNodes[current].classList.remove("goFirst");
@@ -227,13 +229,13 @@ function animateMessages(starting) {
       MESSAGES.childNodes[first].classList.remove("goSecond");
       MESSAGES.childNodes[first].classList.add("goFirst");
       MESSAGES.childNodes[first].addEventListener("click", () => {
-        expand(MESSAGES.childNodes[first], MESSAGES_DATA[first]);
+        expand(MESSAGES.childNodes[first], filteredData[first]);
       });
       MESSAGES.childNodes[second].classList.remove("goThird");
       MESSAGES.childNodes[second].classList.add("goSecond");
       MESSAGES.childNodes[third].classList.remove("invisible");
       MESSAGES.childNodes[third].classList.add("goThird");
-    } else if (MESSAGES_DATA.length === 3) {
+    } else if (filteredData.length === 3) {
       let current;
       MESSAGES.childNodes.forEach((message, index) => {
         if (message.classList.contains("goFirst")) {
@@ -246,12 +248,12 @@ function animateMessages(starting) {
       });
 
       let first = current + 1;
-      if (current + 1 >= MESSAGES_DATA.length) {
+      if (current + 1 >= filteredData.length) {
         first = 0;
       }
       let second = current + 2;
-      if (second >= MESSAGES_DATA.length) {
-        second = Math.abs(second - MESSAGES_DATA.length);
+      if (second >= filteredData.length) {
+        second = Math.abs(second - filteredData.length);
       }
 
       MESSAGES.childNodes[current].classList.remove("goFirst");
@@ -259,11 +261,11 @@ function animateMessages(starting) {
       MESSAGES.childNodes[first].classList.remove("goSecond");
       MESSAGES.childNodes[first].classList.add("goFirst");
       MESSAGES.childNodes[first].addEventListener("click", () => {
-        expand(MESSAGES.childNodes[first], MESSAGES_DATA[first]);
+        expand(MESSAGES.childNodes[first], filteredData[first]);
       });
       MESSAGES.childNodes[second].classList.remove("goThird");
       MESSAGES.childNodes[second].classList.add("goSecond");
-    } else if (MESSAGES_DATA.length === 2) {
+    } else if (filteredData.length === 2) {
       let current;
       MESSAGES.childNodes.forEach((message, index) => {
         if (message.classList.contains("goFirst")) {
@@ -276,7 +278,7 @@ function animateMessages(starting) {
       });
 
       let first = current + 1;
-      if (current + 1 >= MESSAGES_DATA.length) {
+      if (current + 1 >= filteredData.length) {
         first = 0;
       }
 
@@ -285,7 +287,7 @@ function animateMessages(starting) {
       MESSAGES.childNodes[first].classList.remove("goSecond");
       MESSAGES.childNodes[first].classList.add("goFirst");
       MESSAGES.childNodes[first].addEventListener("click", () => {
-        expand(MESSAGES.childNodes[first], MESSAGES_DATA[first]);
+        expand(MESSAGES.childNodes[first], filteredData[first]);
       });
     }
   }
