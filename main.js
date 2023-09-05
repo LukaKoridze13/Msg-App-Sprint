@@ -240,7 +240,6 @@ function animateMessages(starting) {
   }
 }
 function expand(messageDiv, message) {
-  console.log(messageDiv);
   animateAllowed = false;
   messageDiv.style.transition = "all 0.3s";
   messageDiv.id = "expand";
@@ -474,12 +473,10 @@ function openResponse(messageDiv) {
   messageDiv.id = "shrinkForReply";
   REPLY_FORM.style.bottom = "16px";
 }
-
 function backResponse() {
   document.querySelector("#shrinkForReply").id = "expand";
   REPLY_FORM.style.bottom = "-50%";
 }
-
 function sendMessage() {
   backResponse();
   document.querySelector("#expand .trash").click();
