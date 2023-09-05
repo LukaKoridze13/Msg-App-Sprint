@@ -15,9 +15,30 @@
       <div id="right"><span>Pinned</span></div>
       <div id="black"></div>
     </div>
-    <div id="messages">
-      
-    </div>
+    <div id="messages"></div>
+    <form id="newMessage">
+      <h1>New Message</h1>
+      <label class="sendto" for="sendto">Send to:</label
+      ><input type="text" placeholder="@username" />
+      <span>or</span>
+      <input type="checkbox" name="sendto" id="random" />
+      <label for="random">Random User</label>
+      <input type="text" placeholder="Subject" class="subj" />
+      <textarea rows="12" placeholder="Message...."></textarea>
+      <button id="newmes" class="submit">Send</button>
+    </form>
+    <form id="reply">
+      <h1>Your Response</h1>
+      <span>18.04.2023</span>
+      <textarea placeholder="Your message...."></textarea>
+      <div
+        class="buttons"
+        style="display: flex; margin-top: 12px; justify-content: space-between"
+      >
+        <div class="back"><span>Back</span></div>
+        <div class="send"><span>Send</span></div>
+      </div>
+    </form>
     <script src="./main.js"></script>
   </body>
 </html>

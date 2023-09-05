@@ -4,7 +4,12 @@ const PINNED = document.querySelector("#right");
 const BLACK = document.querySelector("#black");
 const COUNT = document.querySelector("#count");
 const MESSAGES = document.querySelector("#messages");
-
+const PLUS = document.querySelector("#plusButton");
+const NEW_MESSAGE_FORM = document.querySelector("#newMessage");
+const NEW_MESSAGE_SUBMIT = document.querySelector("#newmes");
+const BACK = document.querySelector(".back");
+const SEND = document.querySelector(".send");
+const REPLY_FORM = document.querySelector("#reply");
 // VARIABLES
 const COOLDOWN = 500;
 
@@ -92,6 +97,11 @@ PINNED.addEventListener("click", filter);
 window.addEventListener("wheel", handleWheelDown);
 document.addEventListener("touchstart", handleTouchStart, false);
 document.addEventListener("touchmove", handleTouchMove, false);
+PLUS.addEventListener("click", toggleNewMessageForm);
+NEW_MESSAGE_FORM.addEventListener("submit", toggleNewMessageForm);
+BACK.addEventListener("click", backResponse);
+SEND.addEventListener("click", sendMessage);
+
 // STARTING SETUP
 COUNT.textContent = MESSAGES_DATA.length;
 drawMessages(MESSAGES_DATA);
@@ -315,6 +325,10 @@ function drawMessage(message, index) {
   const replyButtonSpan = document.createElement("span");
   replyButtonSpan.textContent = "Reply";
   replyButtonDiv.appendChild(replyButtonSpan);
+  replyButtonDiv.addEventListener("click", (event) => {
+    event.stopPropagation();
+    openResponse(messageDiv);
+  });
 
   messageDiv.appendChild(titleElement);
   messageDiv.appendChild(dateLocationElement);
@@ -443,4 +457,30 @@ function animateReverse() {
 }
 function updateCount() {
   COUNT.textContent = MESSAGES_DATA.length;
+}
+function toggleNewMessageForm(event) {
+  event.preventDefault();
+  if (PLUS.textContent !== "x") {
+    NEW_MESSAGE_FORM.style.display = "block";
+    PLUS.textContent = "x";
+    PLUS.style.fontSize = "28px";
+  } else {
+    NEW_MESSAGE_FORM.style.display = "none";
+    PLUS.textContent = "+";
+    PLUS.style.fontSize = "36px";
+  }
+}
+function openResponse(messageDiv) {
+  messageDiv.id = "shrinkForReply";
+  REPLY_FORM.style.bottom = "16px";
+}
+
+function backResponse() {
+  document.querySelector("#shrinkForReply").id = "expand";
+  REPLY_FORM.style.bottom = "-50%";
+}
+
+function sendMessage() {
+  backResponse();
+  document.querySelector("#expand .trash").click();
 }

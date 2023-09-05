@@ -32,6 +32,7 @@ body {
   position: absolute;
   top: 16px;
   right: 16px;
+  z-index: 20;
 }
 
 #youHave {
@@ -230,4 +231,139 @@ body {
   width: calc(100vw - 32px);
   height: calc(100dvh - 32px);
   bottom: 16px;
+  z-index: 200;
+}
+
+#newMessage {
+  width: calc(100vw - 32px);
+  padding-top: 32px;
+  height: 100dvh;
+  background-color: #09a341;
+  position: absolute;
+  z-index: 10;
+  color: white;
+  display: none;
+}
+
+#newMessage label {
+  font-size: 18px;
+}
+.sendto {
+  display: block;
+  margin-top: 20px;
+}
+
+input {
+  width: 150px;
+  height: 25px;
+  background-color: #b3d2bd;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 8px;
+}
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+input[type="checkbox"] {
+  width: 18px;
+}
+input,
+label,
+span {
+  vertical-align: middle;
+}
+
+.subj,
+textarea {
+  width: 100%;
+  margin-top: 16px;
+  background-color: #b3d2bd;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 8px;
+  resize: none;
+}
+
+.submit {
+  width: 50%;
+  height: 50px;
+  margin: 20px auto;
+  display: block;
+  background-color: #b3d2bd;
+  border: none;
+  border-radius: 10px;
+  font-size: 25px;
+}
+
+#shrinkForReply {
+  width: calc(100vw - 32px);
+  height: calc(50dvh - 24px);
+  bottom: auto;
+  top: 16px;
+  z-index: 200;
+  overflow: hidden;
+}
+
+#reply {
+  width: calc(100vw - 32px);
+  height: calc(50dvh - 24px);
+  bottom: -50%;
+  z-index: 200;
+  overflow: hidden;
+  position: absolute;
+
+  background-color: white;
+  border-radius: 30px;
+  padding: 20px;
+  transition: all 0.3s;
+}
+#reply h1 {
+  font-size: 22px;
+}
+
+#reply > span {
+  font-size: 16px;
+  color: gray;
+}
+
+#reply textarea {
+  height: 70%;
+  width: 100%;
+  background-color: rgb(231, 231, 231);
+  margin-top: 20px;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 16px;
+}
+.back,
+.send {
+  width: 48%;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #b5d2be;
+  position: relative;
+}
+.back span,
+.send span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  white-space: nowrap;
+  color: white;
+  width: 90%;
+  height: 80%;
+  background-color: black;
+  border-radius: 20px;
+  display: grid;
+  place-content: center;
+}
+
+.back span {
+  background-color: #09a341;
 }
